@@ -41,7 +41,8 @@ document.getElementById("startreset").onclick =function(){
 }
 //clicking answer box
 
-document.getElementById("box1").onclick= function(){
+for(i=1;i<5;i++){
+    document.getElementById("box" + i).onclick= function(){
     if(playing==true){
         if(this.innerHTML==correctAnswer){
             //correct answer
@@ -66,6 +67,7 @@ document.getElementById("box1").onclick= function(){
             }, 1000)
            }
        }
+}
     
 }
 //if we are playing
