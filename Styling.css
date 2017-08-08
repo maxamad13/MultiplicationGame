@@ -1,6 +1,6 @@
 html{
 	height: :100%;
-	background: :radial-gradient(circle,#fff,#ccc);
+	background:radial-gradient(circle,#fff,#ccc);
 }
 
 #container {
@@ -10,8 +10,11 @@ html{
 	margin:100px auto;
 	padding: 20px;
 	border-radius: 10px;
-	box-shadow: 4px 4px 0px 20px;
+	box-shadow: 1px 4px 0px 20px;
 	position: relative;
+
+    
+    
 }
 
 #score{
@@ -80,13 +83,20 @@ html{
 	border-radius: 2px;
 	cursor: pointer;
 	box-shadow: 0px 4px rgba(0,0,0,0.2)
-	text-align:center;
+	text-align: center;
 	line-height: 88px;
 	position: relative;
 
 }
+/*all boxes centered*/
+#box1, #box2, #box3, #box4{
+    text-align: center;
+
+    
+}
 #box4{
 	margin-right: 0;
+    
 }
 .box:hover, #startreset:hover{
 	background-color: #9c89f6;
@@ -99,18 +109,19 @@ html{
 }
 
 #startreset{
-	width: 78px;
+	width: 85px;
 	padding: 10px;
+    top: -15px;
 	background-color: rgba(255,255,255,0.5);
 	margin:0 auto;
-	
+	cursor: pointer;
 	border-radius: 3px;
 	cursor: pointer;
 	box-shadow: 0px 4px rgba(0,0,0,0.2)
-	text-align:center;
+	text-align: center;
 	
 	position: relative;
-	//border:solid black;
+	
 }
 
 #timeremaining{
