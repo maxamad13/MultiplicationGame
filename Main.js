@@ -39,6 +39,35 @@ document.getElementById("startreset").onclick =function(){
     }
     
 }
+//clicking answer box
+
+document.getElementById("box1").onclick= function(){
+    if(playing==true){
+        if(this.innerHTML==correctAnswer){
+            //correct answer
+            score++;
+            document.getElementById("score").innerHTML=score;
+            
+            //correct box
+            hide("wrong");
+            show("correct");
+            setTimeout(function(){
+                hide("correct")
+            }, 1000)
+            //generate new questionsQA
+            generateQA();
+        
+            
+           }else{
+               hide("correct");
+            show("wrong");
+            setTimeout(function(){
+                hide("wrong")
+            }, 1000)
+           }
+       }
+    
+}
 //if we are playing
 //  reload page
 //if we are not playing
@@ -78,7 +107,7 @@ function startCountdown(){
             document.getElementById("startreset").innerHTML="Start Game";
             
         }
-    }, 100)
+    }, 1000)
 }
 
 //stop counter
@@ -110,11 +139,16 @@ function generateQA(){
     document.getElementById("box" + correctPosition).innerHTML=correctAnswer;
     
     //fill other boxes with wrong answers
+    var answrs = [correctAnswer];
     for(i = 1; i <5; i++){
         if(i!=correctPosition){
-            var wrongAnswer = (1 + Math.round(9*Math.random()))*(1 + Math.round(9*Math.random()));
-            
+            var wrongAnswer;
+          do{
+               wrongAnswer=(1 + Math.round(9*Math.random()))*(1 + Math.round(9*Math.random()));
+          }while(answrs.indexOf(wrongAnswer)>-1)
+          
             document.getElementById("box" + i).innerHTML= wrongAnswer;
+            answrs.push(wrongAnswer);
         }
     }
     
