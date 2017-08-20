@@ -6,7 +6,7 @@ var correctAnswer;
 //if we click on the start /reset
 
 
-document.getElementById("startreset").onclick =function(){
+$("#startreset").click(function(){
     console.log("start reset");
     if(playing == true){
         location.reload();//reload page
@@ -16,19 +16,21 @@ document.getElementById("startreset").onclick =function(){
         //change game to playing
         playing = true;
         score = 0;
-        document.getElementById("scorevalue").innerHTML= score;
-        
+        //document.getElementById("scorevalue").innerHTML= score;
+        $("#scorevalue").html(score);
         
         //show countdown box
-        document.getElementById("timeremaining").style.display= "block"
+        $("#timeremaining").show();
         timeremaining = 60;
         
         //hide gameOver
-        document.getElementById("gameOver").style.display = "none";
-        document.getElementById("tiveremainingvalue").innerHTML = timeremaining;   
+        $("#gameOver").hide();
+        $("#tiveremainingvalue").html(timeremaining);
+        //document.getElementById("tiveremainingvalue").innerHTML = //timeremaining;   
         
         //change to reset
-        document.getElementById("startreset").innerHTML="Reset Game"
+       $("#startreset").html("Reset");
+        // document.getElementById("startreset").innerHTML="Reset //Game"
         
         //start countdown
         startCountdown();
@@ -38,16 +40,16 @@ document.getElementById("startreset").onclick =function(){
         
     }
     
-}
+});
 //clicking answer box
 
 for(i=1;i<5;i++){
-    document.getElementById("box" + i).onclick= function(){
+    $("#box" + i).click(function(){
     if(playing==true){
         if(this.innerHTML==correctAnswer){
             //correct answer
             score++;
-            document.getElementById("score").innerHTML=score;
+            $("#score").html(score);
             
             //correct box
             hide("wrong");
@@ -67,7 +69,7 @@ for(i=1;i<5;i++){
             }, 1000)
            }
        }
-}
+})
     
 }
 //if we are playing
@@ -95,18 +97,18 @@ for(i=1;i<5;i++){
 function startCountdown(){
     action = setInterval(function(){
         timeremaining -=1;
-        document.getElementById("tiveremainingvalue").innerHTML = timeremaining;   
+        $("#tiveremainingvalue").html(timeremaining);   
         if(timeremaining==0){
           stopCountdown();
-            document.getElementById("gameOver").style.display="block";
-            document.getElementById("gameOver").innerHTML=
-                "<p>Game Over!</><p>Your Schore is: " + score + "<p/>"
+            $("#gameOver").show();
+            $("#gameOver").html(
+                "<p>Game Over!</><p>Your Schore is: " + score + "<p/>")
            hide("timeremaining");
             hide("correct");
             hide("wrong");
             playing = false;
             
-            document.getElementById("startreset").innerHTML="Start Game";
+            $("#startreset").html("Start Game");
             
         }
     }, 1000)
@@ -119,7 +121,7 @@ function stopCountdown(){
 
 
 //hide certain elements
-
+//Method for hiding element
 function hide(id){
     document.getElementById(id).style.display="none";
 }
@@ -135,10 +137,10 @@ function generateQA(){
     var x = 1 + Math.round(9*Math.random());
     var y = 1 + Math.round(9*Math.random());
     correctAnswer = x *y;
-    document.getElementById("question").innerHTML = x + "x" + y;
+    $("#question").html(x + "x" + y);
     console.log(correctAnswer);
     var correctPosition =1 + Math.round(3*Math.random());
-    document.getElementById("box" + correctPosition).innerHTML=correctAnswer;
+    $("#box" + correctPosition).html(correctAnswer);
     
     //fill other boxes with wrong answers
     var answrs = [correctAnswer];
@@ -149,7 +151,7 @@ function generateQA(){
                wrongAnswer=(1 + Math.round(9*Math.random()))*(1 + Math.round(9*Math.random()));
           }while(answrs.indexOf(wrongAnswer)>-1)
           
-            document.getElementById("box" + i).innerHTML= wrongAnswer;
+            $("#box" + i).html(wrongAnswer);
             answrs.push(wrongAnswer);
         }
     }
